@@ -6,6 +6,6 @@ function Container() {
       <FormContainer />
     </div>
   );
-};
+}
 
 export default Container;
