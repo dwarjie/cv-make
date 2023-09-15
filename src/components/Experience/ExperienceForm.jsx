@@ -1,7 +1,7 @@
 import ExperienceRow from "./ExperienceRow";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
-import { Textarea } from "./ui/textarea";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Textarea } from "../ui/textarea";
 import { AiOutlinePlus } from "react-icons/ai";
 
 function ExperienceForm() {

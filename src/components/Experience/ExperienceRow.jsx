@@ -1,5 +1,3 @@
-import { Input } from "./ui/input";
-
 function ExperienceRow({ inputValue }) {
   return (
     <div className="p-1 mt-3 border border-primary rounded-md cursor-pointer">
