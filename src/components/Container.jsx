@@ -1,9 +1,11 @@
 import FormContainer from "./FormContainer";
+import ResumeContainer from "./ResumeContainer";
 
 function Container() {
   return (
-    <div className="grid grid-cols-12 gap-5 w-auto px-20">
+    <div className="grid grid-cols-12 gap-5 w-auto h-screen px-20 py-14">
       <FormContainer />
+      <ResumeContainer />
     </div>
   );
 }

@@ -4,7 +4,7 @@ import Container from "./components/Container";
 
 function App() {
   return (
-    <div className="font-header text-white">
+    <div className="font-header text-white relative">
       <Navigation />
       <Container />
     </div>
