@@ -9,20 +9,6 @@ import EducationForm from "./Education/EducationForm";
 function FormContainer() {
   const [data, setData] = useState(initialData);
 
-  const renderForm = () => {
-    let currentForm = data.sections[data.currentSection].name;
-    switch (currentForm) {
-      case "personal":
-        return <PersonalForm />;
-      case "experience":
-        return <ExperienceForm />;
-      case "education":
-        return <EducationForm />;
-      default:
-        return <PersonalForm />;
-    }
-  };
-
   const nextForm = () => {
     let currentSection = data.currentSection;
     const maxForm = 2;
@@ -61,6 +47,38 @@ function FormContainer() {
     }));
 
     renderForm();
+  };
+
+  const handlePersonalInputChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    console.log(name);
+    console.log(value);
+    setData((prevData) => ({
+      ...prevData,
+      personal: {
+        [name]: value,
+      },
+    }));
+  };
+
+  const renderForm = () => {
+    let currentForm = data.sections[data.currentSection].name;
+    switch (currentForm) {
+      case "personal":
+        return (
+          <PersonalForm
+            data={data}
+            handleInputChange={handlePersonalInputChange}
+          />
+        );
+      case "experience":
+        return <ExperienceForm />;
+      case "education":
+        return <EducationForm />;
+      default:
+        return <PersonalForm />;
+    }
   };
 
   return (

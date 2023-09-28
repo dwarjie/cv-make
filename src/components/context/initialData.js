@@ -9,8 +9,8 @@ const initialData = {
     firstName: "First Name",
     lastName: "Last Name",
     email: "email@sample.com",
-    phoneNo: "",
-    address: "",
+    phoneNo: "+63",
+    address: "Sample Street, City, State",
   },
   education: {
     rows: [
