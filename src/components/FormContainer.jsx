@@ -1,29 +1,47 @@
+import { useState } from "react";
+import initialData from "./context/initialData";
+import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import { HiDownload } from "react-icons/hi";
 import PersonalForm from "./Personal/PersonalForm";
 import ExperienceForm from "./Experience/ExperienceForm";
 import EducationForm from "./Education/EducationForm";
-import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
-import { HiDownload } from "react-icons/hi";
-import { useGlobalState } from "@/context/GlobalStateProvider";
 
 function FormContainer() {
-  const [state, dispatch] = useGlobalState();
+  const [data, setData] = useState(initialData);
 
   const renderForm = () => {
-    let sectionName = state.sections[state.currentSection].name;
-    let currentSection = <PersonalForm />;
-    switch (sectionName) {
+    let currentForm = data.sections[data.currentSection].name;
+    switch (currentForm) {
       case "personal":
-        currentSection = <PersonalForm />;
-        break;
+        return <PersonalForm />;
       case "experience":
-        currentSection = <ExperienceForm />;
-        break;
+        return <ExperienceForm />;
       case "education":
-        currentSection = <EducationForm />;
-        break;
+        return <EducationForm />;
+      default:
+        return <PersonalForm />;
+    }
+  };
+
+  const nextForm = () => {
+    let currentSection = data.currentSection;
+    const maxForm = 2;
+    const minForm = 0;
+    console.log("click");
+
+    if (currentSection === maxForm) {
+      setData((prevData) => ({ ...prevData, currentSection: minForm }));
+
+      renderForm();
+      return;
     }
 
-    return currentSection;
+    setData((prevData) => ({
+      ...prevData,
+      currentSection: currentSection + 1,
+    }));
+
+    renderForm();
   };
 
   return (
@@ -32,10 +50,13 @@ function FormContainer() {
       <div className="flex flex-row justify-between gap-5 mt-12">
         <div className="flex flex-row gap-5">
           <button className="bg-primary px-5 rounded-md">
-            <MdNavigateNext size={"2.5rem"} />
-          </button>
-          <button className="bg-primary px-5 rounded-md">
             <MdNavigateBefore size={"2.5rem"} />
+          </button>
+          <button
+            className="bg-primary px-5 rounded-md"
+            onClick={() => nextForm()}
+          >
+            <MdNavigateNext size={"2.5rem"} />
           </button>
         </div>
         <button className="bg-primary px-6 rounded-md">

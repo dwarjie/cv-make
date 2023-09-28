@@ -15,23 +15,33 @@ function PersonalForm() {
         <div className="col-span-6">
           <form className="flex flex-col gap-3">
             <div>
-              <Label htmlFor="firstName">First Name:</Label>
+              <Label className="text-primary" htmlFor="firstName">
+                First Name:
+              </Label>
               <Input type="text" id="firstName" placeholder="Your first name" />
             </div>
             <div>
-              <Label htmlFor="lastName">Last Name:</Label>
+              <Label className="text-primary" htmlFor="lastName">
+                Last Name:
+              </Label>
               <Input type="text" id="lastName" placeholder="Your last name" />
             </div>
             <div>
-              <Label htmlFor="email">Email:</Label>
+              <Label className="text-primary" htmlFor="email">
+                Email:
+              </Label>
               <Input type="email" id="email" placeholder="email@sample.com" />
             </div>
             <div>
-              <Label htmlFor="phoneNo">Mobile Number:</Label>
+              <Label className="text-primary" htmlFor="phoneNo">
+                Mobile Number:
+              </Label>
               <Input type="text" id="phoneNo" placeholder="+6309090909" />
             </div>
             <div>
-              <Label htmlFor="address">Address:</Label>
+              <Label className="text-primary" htmlFor="address">
+                Address:
+              </Label>
               <Input
                 type="text"
                 id="adress"
