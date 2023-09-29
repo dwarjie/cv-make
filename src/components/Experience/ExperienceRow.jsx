@@ -1,6 +1,6 @@
 function ExperienceRow({ inputValue }) {
   return (
-    <div className="p-1 mt-3 border border-primary rounded-md cursor-pointer">
+    <div className="p-1 mt-3 border border-primary rounded-md">
       <h1 className="px-2 font-bold text-xl text-primary border-none">
         {inputValue}
       </h1>

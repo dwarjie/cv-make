@@ -1,5 +1,5 @@
-import { useState } from "react";
 import initialData from "./context/initialData";
+import { useState } from "react";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { HiDownload } from "react-icons/hi";
 import PersonalForm from "./Personal/PersonalForm";
@@ -52,8 +52,6 @@ function FormContainer() {
   const handlePersonalInputChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    console.log(name);
-    console.log(value);
     setData((prevData) => ({
       ...prevData,
       personal: {
@@ -73,7 +71,7 @@ function FormContainer() {
           />
         );
       case "experience":
-        return <ExperienceForm />;
+        return <ExperienceForm data={data} />;
       case "education":
         return <EducationForm />;
       default:

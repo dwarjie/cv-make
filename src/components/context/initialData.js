@@ -26,8 +26,8 @@ const initialData = {
   experience: {
     rows: [
       {
-        companyName: "Sample University School",
-        positionTitle: "Software Engineer",
+        companyName: "Sample Company",
+        position: "Software Engineer",
         startDate: "2019-01-01",
         endDate: "2029-01-01",
         companyLocation: "",
