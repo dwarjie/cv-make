@@ -24,7 +24,7 @@ function PersonalForm({ data, handleInputChange }) {
                 className="text-primary"
                 name="firstName"
                 placeholder="Your first name"
-                value={data.personal.firstName}
+                value={data.firstName}
                 onChange={(e) => handleInputChange(e)}
               />
             </div>
@@ -38,7 +38,7 @@ function PersonalForm({ data, handleInputChange }) {
                 className="text-primary"
                 name="lastName"
                 placeholder="Your last name"
-                value={data.personal.lastName}
+                value={data.lastName}
                 onChange={(e) => handleInputChange(e)}
               />
             </div>
@@ -52,7 +52,7 @@ function PersonalForm({ data, handleInputChange }) {
                 className="text-primary"
                 name="email"
                 placeholder="email@sample.com"
-                value={data.personal.email}
+                value={data.email}
                 onChange={(e) => handleInputChange(e)}
               />
             </div>
@@ -65,7 +65,7 @@ function PersonalForm({ data, handleInputChange }) {
                 id="phoneNo"
                 className="text-primary"
                 placeholder="+6309090909"
-                value={data.personal.phoneNo}
+                value={data.phoneNo}
                 onChange={(e) => handleInputChange(e)}
               />
             </div>
@@ -78,7 +78,7 @@ function PersonalForm({ data, handleInputChange }) {
                 id="adress"
                 className="text-primary"
                 placeholder="Block, Street, City, State"
-                value={data.personal.address}
+                value={data.address}
                 onChange={(e) => handleInputChange(e)}
               />
             </div>

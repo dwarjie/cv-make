@@ -5,12 +5,12 @@ import { Textarea } from "../ui/textarea";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useState } from "react";
 
-function ExperienceForm({ data }) {
+function ExperienceForm({ data, handleInputChange }) {
   const [currentRow, setCurrentRow] = useState(-1);
   const [isFold, setIsFold] = useState(true);
 
   const renderRows = () => {
-    let rows = data.experience.rows || [];
+    let rows = data.experience || [];
 
     if (rows == []) {
       return;
@@ -48,6 +48,7 @@ function ExperienceForm({ data }) {
                 name="companyName"
                 placeholder="Company ABC"
                 value={info.companyName}
+                onChange={(e) => handleInputChange(e, info.id)}
               />
             </div>
             <div>

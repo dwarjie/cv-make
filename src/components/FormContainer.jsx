@@ -1,3 +1,4 @@
+import { v4 as uuid } from "uuid";
 import initialData from "./context/initialData";
 import { useState } from "react";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
@@ -7,44 +8,60 @@ import ExperienceForm from "./Experience/ExperienceForm";
 import EducationForm from "./Education/EducationForm";
 
 function FormContainer() {
+  const SECTIONS = [
+    { name: "personal" },
+    { name: "experience" },
+    { name: "education" },
+  ];
   const [data, setData] = useState(initialData);
+  const [currentSection, setCurrenSection] = useState(0);
+  const [personal, setPersonal] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNo: "",
+    address: "",
+  });
+  const [experience, setExperience] = useState([
+    {
+      id: uuid().slice(0, 8),
+      companyName: "Sample Company",
+      position: "Software Engineer",
+      startDate: "2019-01-01",
+      endDate: "2029-01-01",
+      companyLocation: "",
+      description: "",
+    },
+  ]);
 
   const nextForm = () => {
-    let currentSection = data.currentSection;
     const maxForm = 2;
     const minForm = 0;
 
     if (currentSection === maxForm) {
-      setData((prevData) => ({ ...prevData, currentSection: minForm }));
+      setCurrenSection((prevState) => minForm);
 
       renderForm();
       return;
     }
 
-    setData((prevData) => ({
-      ...prevData,
-      currentSection: currentSection + 1,
-    }));
+    setData((prevState) => prevState + 1);
 
     renderForm();
   };
 
   const prevForm = () => {
-    let currentSection = data.currentSection;
     const minForm = 0;
     const maxForm = 2;
 
     if (currentSection === minForm) {
-      setData((prevData) => ({ ...prevData, currentSection: maxForm }));
+      setData((prevState) => maxForm);
 
       renderForm();
       return;
     }
 
-    setData((prevData) => ({
-      ...prevData,
-      currentSection: currentSection - 1,
-    }));
+    setData((prevState) => prevState - 1);
 
     renderForm();
   };
@@ -52,26 +69,44 @@ function FormContainer() {
   const handlePersonalInputChange = (e) => {
     let name = e.target.name;
     let value = e.target.value;
-    setData((prevData) => ({
+    setPersonal((prevData) => ({
       ...prevData,
-      personal: {
-        [name]: value,
-      },
+      [name]: value,
     }));
   };
 
+  // const handleExperienceInputChange = (e, id) => {
+  //   let name = e.target.name;
+  //   let value = e.target.value;
+  //   setData((prevData) => {
+  //     const newData = prevData.experience.map((exp) => {
+  //       if (exp.id === id) {
+  //         return { ...exp, [name]: value };
+  //       }
+
+  //       return exp;
+  //     });
+
+  //     return newData;
+  //   });
+  // };
+
   const renderForm = () => {
-    let currentForm = data.sections[data.currentSection].name;
+    let currentForm = SECTIONS[currentSection].name;
     switch (currentForm) {
       case "personal":
         return (
           <PersonalForm
-            data={data}
+            data={personal}
             handleInputChange={handlePersonalInputChange}
           />
         );
       case "experience":
-        return <ExperienceForm data={data} />;
+        return (
+          <ExperienceForm
+          // handleInputChange={handleExperienceInputChange}
+          />
+        );
       case "education":
         return <EducationForm />;
       default:

@@ -1,3 +1,5 @@
+import { v4 as uuid } from "uuid";
+
 const initialData = {
   currentSection: 0,
   sections: [
@@ -23,9 +25,9 @@ const initialData = {
       },
     ],
   },
-  experience: {
-    rows: [
+  experience: [
       {
+        id: uuid().slice(0, 8),
         companyName: "Sample Company",
         position: "Software Engineer",
         startDate: "2019-01-01",
@@ -33,8 +35,7 @@ const initialData = {
         companyLocation: "",
         description: "",
       },
-    ],
-  },
+  ],
 };
 
 export default initialData;
