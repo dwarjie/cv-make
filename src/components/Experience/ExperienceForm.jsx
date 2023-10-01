@@ -2,15 +2,15 @@ import ExperienceRow from "./ExperienceRow";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineDelete } from "react-icons/ai";
 import { useState } from "react";
 
-function ExperienceForm({ data, handleInputChange }) {
+function ExperienceForm({ data, handleInputChange, handleAdd, handleDelete }) {
   const [currentRow, setCurrentRow] = useState(-1);
   const [isFold, setIsFold] = useState(true);
 
   const renderRows = () => {
-    let rows = data.experience || [];
+    let rows = data || [];
 
     if (rows == []) {
       return;
@@ -116,6 +116,14 @@ function ExperienceForm({ data, handleInputChange }) {
               />
             </div>
           </form>
+          <div className="flex flex-row justify-end">
+            <button className="bg-red-500 text-white px-3 py-2 rounded-md mt-3">
+              <AiOutlineDelete
+                size={"1rem"}
+                onClick={() => handleDelete(info.id)}
+              />
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -125,7 +133,10 @@ function ExperienceForm({ data, handleInputChange }) {
     <div className="pt-12">
       <h1 className="text-2xl font-bold text-primary">Experience</h1>
       {renderRows()}
-      <button className="bg-primary px-6 py-2 rounded-md mt-3">
+      <button
+        className="bg-primary px-6 py-2 rounded-md mt-3"
+        onClick={handleAdd}
+      >
         <AiOutlinePlus size={"1.5rem"} />
       </button>
     </div>

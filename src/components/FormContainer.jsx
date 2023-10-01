@@ -45,7 +45,7 @@ function FormContainer() {
       return;
     }
 
-    setData((prevState) => prevState + 1);
+    setCurrenSection((prevState) => prevState + 1);
 
     renderForm();
   };
@@ -55,13 +55,13 @@ function FormContainer() {
     const maxForm = 2;
 
     if (currentSection === minForm) {
-      setData((prevState) => maxForm);
+      setCurrenSection((prevState) => maxForm);
 
       renderForm();
       return;
     }
 
-    setData((prevState) => prevState - 1);
+    setCurrenSection((prevState) => prevState - 1);
 
     renderForm();
   };
@@ -75,21 +75,38 @@ function FormContainer() {
     }));
   };
 
-  // const handleExperienceInputChange = (e, id) => {
-  //   let name = e.target.name;
-  //   let value = e.target.value;
-  //   setData((prevData) => {
-  //     const newData = prevData.experience.map((exp) => {
-  //       if (exp.id === id) {
-  //         return { ...exp, [name]: value };
-  //       }
+  const handleExperienceInputChange = (e, id) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    setExperience((prevData) => {
+      const newData = prevData.map((exp) => {
+        if (exp.id === id) {
+          return { ...exp, [name]: value };
+        }
 
-  //       return exp;
-  //     });
+        return exp;
+      });
 
-  //     return newData;
-  //   });
-  // };
+      return newData;
+    });
+  };
+
+  const addExperience = () => {
+    let newExperience = {
+      id: uuid().slice(0, 8),
+      companyName: "New Experience",
+      position: "",
+      startDate: "",
+      endDate: "",
+      companyLocation: "",
+      description: "",
+    };
+    setExperience([...experience, newExperience]);
+  };
+
+  const deleteExperience = (experienceId) => {
+    setExperience(experience.filter((exp) => exp.id !== experienceId));
+  };
 
   const renderForm = () => {
     let currentForm = SECTIONS[currentSection].name;
@@ -104,7 +121,10 @@ function FormContainer() {
       case "experience":
         return (
           <ExperienceForm
-          // handleInputChange={handleExperienceInputChange}
+            data={experience}
+            handleInputChange={handleExperienceInputChange}
+            handleAdd={addExperience}
+            handleDelete={deleteExperience}
           />
         );
       case "education":
