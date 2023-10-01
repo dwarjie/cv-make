@@ -62,6 +62,7 @@ function ExperienceForm({ data, handleInputChange, handleAdd, handleDelete }) {
                 name="position"
                 placeholder="e.g., Developer"
                 value={info.position}
+                onChange={(e) => handleInputChange(e, info.id)}
               />
             </div>
             <div className="grid grid-cols-6 gap-1">
@@ -75,6 +76,7 @@ function ExperienceForm({ data, handleInputChange, handleAdd, handleDelete }) {
                   id="startDate"
                   name="startDate"
                   value={info.startDate}
+                  onChange={(e) => handleInputChange(e, info.id)}
                 />
               </div>
               <div className="col-span-3">
@@ -87,6 +89,7 @@ function ExperienceForm({ data, handleInputChange, handleAdd, handleDelete }) {
                   id="endDate"
                   name="endDate"
                   value={info.endDate}
+                  onChange={(e) => handleInputChange(e, info.id)}
                 />
               </div>
             </div>
@@ -101,6 +104,7 @@ function ExperienceForm({ data, handleInputChange, handleAdd, handleDelete }) {
                 name="companyLocation"
                 placeholder="Block, Street, City, State"
                 value={info.companyLocation}
+                onChange={(e) => handleInputChange(e, info.id)}
               />
             </div>
             <div>
@@ -113,6 +117,7 @@ function ExperienceForm({ data, handleInputChange, handleAdd, handleDelete }) {
                 placeholder="Type your description here."
                 name="description"
                 value={info.description}
+                onChange={(e) => handleInputChange(e, info.id)}
               />
             </div>
           </form>

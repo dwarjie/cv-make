@@ -63,6 +63,7 @@ function PersonalForm({ data, handleInputChange }) {
               <Input
                 type="text"
                 id="phoneNo"
+                name="phoneNo"
                 className="text-primary"
                 placeholder="+6309090909"
                 value={data.phoneNo}
@@ -76,6 +77,7 @@ function PersonalForm({ data, handleInputChange }) {
               <Input
                 type="text"
                 id="adress"
+                name="address"
                 className="text-primary"
                 placeholder="Block, Street, City, State"
                 value={data.address}

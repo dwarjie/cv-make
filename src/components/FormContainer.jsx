@@ -1,19 +1,18 @@
 import { v4 as uuid } from "uuid";
 import initialData from "./context/initialData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { HiDownload } from "react-icons/hi";
 import PersonalForm from "./Personal/PersonalForm";
 import ExperienceForm from "./Experience/ExperienceForm";
 import EducationForm from "./Education/EducationForm";
 
-function FormContainer() {
+function FormContainer({ fetchData }) {
   const SECTIONS = [
     { name: "personal" },
     { name: "experience" },
     { name: "education" },
   ];
-  const [data, setData] = useState(initialData);
   const [currentSection, setCurrenSection] = useState(0);
   const [personal, setPersonal] = useState({
     firstName: "",
@@ -33,6 +32,20 @@ function FormContainer() {
       description: "",
     },
   ]);
+  const [education, setEducation] = useState([
+    {
+      id: uuid().slice(0, 8),
+      schoolName: "Sample University School",
+      degree: "BSIT - Bachelor of Science in Information Technology",
+      startDate: "2019-01-01",
+      endDate: "2029-01-01",
+      schoolLocation: "",
+    },
+  ]);
+
+  useEffect(() => {
+    fetchData([personal, experience, education]);
+  }, [personal, experience, education]);
 
   const nextForm = () => {
     const maxForm = 2;
@@ -91,6 +104,22 @@ function FormContainer() {
     });
   };
 
+  const handleEducationInputChange = (e, id) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    setEducation((prevData) => {
+      const newData = prevData.map((educ) => {
+        if (educ.id === id) {
+          return { ...educ, [name]: value };
+        }
+
+        return educ;
+      });
+
+      return newData;
+    });
+  };
+
   const addExperience = () => {
     let newExperience = {
       id: uuid().slice(0, 8),
@@ -106,6 +135,22 @@ function FormContainer() {
 
   const deleteExperience = (experienceId) => {
     setExperience(experience.filter((exp) => exp.id !== experienceId));
+  };
+
+  const addEducation = () => {
+    let newEducation = {
+      id: uuid().slice(0, 8),
+      schoolName: "New education",
+      degree: "",
+      startDate: "",
+      endDate: "",
+      schoolLocation: "",
+    };
+    setEducation([...education, newEducation]);
+  };
+
+  const deleteEducation = (educationId) => {
+    setEducation(education.filter((educ) => educ.id !== educationId));
   };
 
   const renderForm = () => {
@@ -128,7 +173,14 @@ function FormContainer() {
           />
         );
       case "education":
-        return <EducationForm />;
+        return (
+          <EducationForm
+            data={education}
+            handleInputChange={handleEducationInputChange}
+            handleAdd={addEducation}
+            handleDelete={deleteEducation}
+          />
+        );
       default:
         return <PersonalForm />;
     }
