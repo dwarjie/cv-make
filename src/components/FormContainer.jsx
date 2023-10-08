@@ -1,13 +1,14 @@
 import { v4 as uuid } from "uuid";
-import cvData from "./context/initialData";
 import { useEffect, useState } from "react";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { HiDownload } from "react-icons/hi";
+import cvData from "./context/initialData";
 import PersonalForm from "./Personal/PersonalForm";
 import ExperienceForm from "./Experience/ExperienceForm";
 import EducationForm from "./Education/EducationForm";
+import ResumeContainer from "./ResumeContainer";
 
-function FormContainer({ fetchData }) {
+function FormContainer({ fetchData, handlePrint }) {
   const SECTIONS = [
     { name: "personal" },
     { name: "experience" },
@@ -188,7 +189,7 @@ function FormContainer({ fetchData }) {
           </button>
         </div>
         <button className="bg-primary px-6 rounded-md">
-          <HiDownload size={"1.5rem"} />
+          <HiDownload size={"1.5rem"} onClick={handlePrint} />
         </button>
       </div>
     </div>
