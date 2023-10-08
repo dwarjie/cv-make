@@ -5,7 +5,7 @@ import ResumeExperience from "./Resume/ResumeExperience";
 function ResumeContainer({ data }) {
   return (
     <div className="col-span-6 px-5 shadow-lg border border-primary-foreground text-primary font-body overflow-y-scroll text-justify">
-      <div className="flex flex-col gap-3 py-5">
+      <div className="flex flex-col gap-3 py-5 w-auto">
         <Header data={data[0]} />
         <hr className="h-px bg-primary border-0" />
         <ResumeExperience data={data[1]} />

@@ -128,6 +128,13 @@ function FormContainer({ fetchData }) {
     setEducation(education.filter((educ) => educ.id !== educationId));
   };
 
+  const uploadImage = (e) => {
+    setPersonal((prevData) => ({
+      ...prevData,
+      profilePicture: e.target.files[0],
+    }));
+  };
+
   const renderForm = () => {
     let currentForm = SECTIONS[currentSection].name;
     switch (currentForm) {
@@ -136,6 +143,7 @@ function FormContainer({ fetchData }) {
           <PersonalForm
             data={personal}
             handleInputChange={handlePersonalInputChange}
+            handleUpload={uploadImage}
           />
         );
       case "experience":

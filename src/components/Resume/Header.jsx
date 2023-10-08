@@ -20,7 +20,15 @@ function Header({ data }) {
         </p>
       </div>
       <div className="md:max-w-[100px] h-auto">
-        <img src={UserProfile} alt="" />
+        <img
+          className="w-96 h-auto"
+          alt="Picture"
+          src={
+            data.profilePicture
+              ? URL.createObjectURL(data.profilePicture)
+              : UserProfile
+          }
+        />
       </div>
     </div>
   );

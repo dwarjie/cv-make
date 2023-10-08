@@ -7,7 +7,7 @@ function ResumeEducationRow({ data }) {
   return (
     <div className="grid grid-cols-3">
       <h2 className="font-bold">{renderDate()}</h2>
-      <div className="flex flex-col col-span-2">
+      <div className="flex flex-col col-span-2 break-words">
         <h2 className="font-bold">{data.schoolName}</h2>
         <p>{data.degree}</p>
         <p>{data.schoolLocation}</p>
