@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import initialData from "./context/initialData";
+import cvData from "./context/initialData";
 import { useEffect, useState } from "react";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { HiDownload } from "react-icons/hi";
@@ -14,34 +14,9 @@ function FormContainer({ fetchData }) {
     { name: "education" },
   ];
   const [currentSection, setCurrenSection] = useState(0);
-  const [personal, setPersonal] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phoneNo: "",
-    address: "",
-  });
-  const [experience, setExperience] = useState([
-    {
-      id: uuid().slice(0, 8),
-      companyName: "Sample Company",
-      position: "Software Engineer",
-      startDate: "2019-01-01",
-      endDate: "2029-01-01",
-      companyLocation: "",
-      description: "",
-    },
-  ]);
-  const [education, setEducation] = useState([
-    {
-      id: uuid().slice(0, 8),
-      schoolName: "Sample University School",
-      degree: "BSIT - Bachelor of Science in Information Technology",
-      startDate: "2019-01-01",
-      endDate: "2029-01-01",
-      schoolLocation: "",
-    },
-  ]);
+  const [personal, setPersonal] = useState(cvData.emptyResumeData[0]);
+  const [experience, setExperience] = useState(cvData.emptyResumeData[1]);
+  const [education, setEducation] = useState(cvData.emptyResumeData[2]);
 
   useEffect(() => {
     fetchData([personal, experience, education]);
@@ -125,8 +100,8 @@ function FormContainer({ fetchData }) {
       id: uuid().slice(0, 8),
       companyName: "New Experience",
       position: "",
-      startDate: "",
-      endDate: "",
+      startDate: "2023-01",
+      endDate: "2023-01",
       companyLocation: "",
       description: "",
     };
@@ -142,8 +117,8 @@ function FormContainer({ fetchData }) {
       id: uuid().slice(0, 8),
       schoolName: "New education",
       degree: "",
-      startDate: "",
-      endDate: "",
+      startDate: "2023-01",
+      endDate: "2023-01",
       schoolLocation: "",
     };
     setEducation([...education, newEducation]);

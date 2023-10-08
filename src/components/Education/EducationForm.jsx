@@ -70,7 +70,7 @@ function EducationForm({ data, handleInputChange, handleAdd, handleDelete }) {
                   Start Date:
                 </Label>
                 <Input
-                  type="date"
+                  type="month"
                   className="text-primary"
                   id="startDate"
                   name="startDate"
@@ -83,7 +83,7 @@ function EducationForm({ data, handleInputChange, handleAdd, handleDelete }) {
                   End Date:
                 </Label>
                 <Input
-                  type="date"
+                  type="month"
                   className="text-primary"
                   id="endDate"
                   name="endDate"

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import FormContainer from "./FormContainer";
 import ResumeContainer from "./ResumeContainer";
+import cvData from "./context/initialData";
 
 function Container() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(cvData.emptyResumeData);
 
   const fetchData = (data) => {
     setData(data);
+    console.log(data);
   };
 
   return (

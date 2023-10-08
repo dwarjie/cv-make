@@ -5,7 +5,9 @@ function Header({ data }) {
     <div className="flex flex-row justify-between items-center w-full">
       <div className="flex flex-col gap-2">
         <h1 className="text-base md:text-2xl font-bold text-primary mb-1">
-          {`${data.firstName} ${data.lastName}`}
+          {data.firstName == "" && data.lastName == ""
+            ? "Sample Name"
+            : `${data.firstName} ${data.lastName}`}
         </h1>
         <p>
           <span className="font-bold">Address:</span> {data.address}
